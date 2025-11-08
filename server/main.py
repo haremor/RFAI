@@ -1,5 +1,4 @@
 import uvicorn
-sample = [[20, 20, 10, 3, 20, 1, 100]]
 from pathlib import Path
 from fastapi import FastAPI, Body, HTTPException
 from fastapi.responses import FileResponse
