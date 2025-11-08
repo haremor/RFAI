@@ -12,16 +12,16 @@ df = pd.read_csv('test data/cr.csv')
 le_crop = LabelEncoder()
 df['label'] = le_crop.fit_transform(df['label'])
 
-# 3. Define features and target
+# 2. Define features and target
 X = df.drop(columns=['label'])
 y = df['label']
 
-# 4. Train/test split (stratify helps if classes are unbalanced)
+# 3. Train/test split (stratify helps if classes are unbalanced)
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
 
-# 5. Scale numeric features (KNN depends on distance)
+# 4. Scale numeric features
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
@@ -32,7 +32,7 @@ X_test_scaled = scaler.transform(X_test)
 #     scores = cross_val_score(knn, X_train_scaled, y_train, cv=5)
 #     print(f"k={k}, mean acc={scores.mean():.3f}")
 
-# 6. Train KNN
+# 5. Train KNN
 knn = KNeighborsClassifier(n_neighbors=8, weights='distance', metric='minkowski')
 knn.fit(X_train_scaled, y_train)
 
