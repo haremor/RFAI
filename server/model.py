@@ -26,12 +26,15 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# 6. Train KNN
-knn = KNeighborsClassifier(n_neighbors=3, weights='distance', metric='minkowski')
-knn.fit(X_train_scaled, y_train)
+# Optional k-test
+# for k in range(1, 21):
+#     knn = KNeighborsClassifier(n_neighbors=k, weights='distance')
+#     scores = cross_val_score(knn, X_train_scaled, y_train, cv=5)
+#     print(f"k={k}, mean acc={scores.mean():.3f}")
 
-# 7. Evaluate
-y_pred = knn.predict(X_test_scaled)
+# 6. Train KNN
+knn = KNeighborsClassifier(n_neighbors=8, weights='distance', metric='minkowski')
+knn.fit(X_train_scaled, y_train)
 
 def top_crops(sample):
     sample_scaled = scaler.transform(sample)
@@ -48,3 +51,6 @@ def top_crops(sample):
             final_top[crop] = prob
 
     return final_top
+
+# Testing
+# print(top_crops([[10, 20, 10, 5, 25, 7, 50]]))

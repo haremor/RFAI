@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReFlora AI - Wildfire Soil Recovery Planner</title>
+    <title>ReFlora AI - Planificador de recuperación de suelos por incendios</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -22,10 +22,10 @@
                 </div>
                 <div class="header-text">
                     <h1>ReFlora AI</h1>
-                    <p>AI-powered crop recommendations for fire-affected land</p>
+                    <p>Recomendaciones de cultivos con IA para tierras afectadas por incendios</p>
                 </div>
                 <div style="margin-left:auto">
-                    <a href="/es" style="text-decoration:none;color:#14532d;font-weight:600">Spanish</a>
+                    <a href="/" style="text-decoration:none;color:#14532d;font-weight:600">English</a>
                 </div>
             </div>
         </div>
@@ -41,9 +41,11 @@
                     d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z" />
             </svg>
             <div>
-                <p><strong>About Wildfire-Affected Soil:</strong> Fire can alter soil pH, reduce organic matter, and
-                    change nutrient availability. Strategic crop selection helps restore soil health while providing
-                    productive yields.</p>
+                <p><strong>Sobre suelos afectados por incendios:</strong> El fuego puede alterar el pH del suelo,
+                    reducir la
+                    materia orgánica y cambiar la disponibilidad de nutrientes. La selección estratégica de cultivos
+                    ayuda a
+                    restaurar la salud del suelo y a obtener rendimientos productivos.</p>
             </div>
         </div>
 
@@ -53,9 +55,9 @@
             <div>
                 <div class="card">
                     <div style="margin-bottom: 1.5rem;">
-                        <h2 style="margin-bottom: 0.5rem;">Soil & Environmental Parameters</h2>
-                        <p style="color: #15803d;">Enter available data. Our AI will use defaults optimized for
-                            wildfire-affected soil.</p>
+                        <h2 style="margin-bottom: 0.5rem;">Parámetros del suelo y ambientales</h2>
+                        <p style="color: #15803d;">Introduzca los datos disponibles. Nuestra IA usará valores por
+                            defecto optimizados para suelos afectados por incendios.</p>
                     </div>
 
                     <form id="soilForm">
@@ -71,44 +73,44 @@
                                             <path
                                                 d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
                                         </svg>
-                                        Soil pH
+                                        pH del suelo
                                     </span>
                                 </div>
                                 <input type="range" class="slider" id="ph" min="0" max="14" step="0.1" value="7"
                                     oninput="this.nextElementSibling.value = this.value">
                                 <output>7</output>
                                 <div class="slider-labels">
-                                    <span>0 ph</span>
-                                    <span>7 ph</span>
-                                    <span>14 ph</span>
+                                    <span>Ácido (4.0)</span>
+                                    <span>Neutro (7.0)</span>
+                                    <span>Alcalino (10.0)</span>
                                 </div>
                             </div>
 
                             <!-- Nitrogen -->
                             <div class="form-group">
                                 <div class="form-label">
-                                    <span>Nitrogen (ppm)</span>
+                                    <span>Nitrógeno (ppm)</span>
                                 </div>
                                 <input type="number" class="input" id="nitrogen"
-                                    placeholder="e.g., 25 (often low after fires)" min="0" max="200">
+                                    placeholder="p.ej., 25 (a menudo bajo después de incendios)" min="0" max="200">
                             </div>
 
                             <!-- Phosphorus -->
                             <div class="form-group">
                                 <div class="form-label">
-                                    <span>Phosphorus (ppm)</span>
+                                    <span>Fósforo (ppm)</span>
                                 </div>
-                                <input type="number" class="input" id="phosphorus" placeholder="e.g., 15" min="0"
+                                <input type="number" class="input" id="phosphorus" placeholder="p.ej., 15" min="0"
                                     max="100">
                             </div>
 
                             <!-- Potassium -->
                             <div class="form-group">
                                 <div class="form-label">
-                                    <span>Potassium (ppm)</span>
+                                    <span>Potasio (ppm)</span>
                                 </div>
                                 <input type="number" class="input" id="potassium"
-                                    placeholder="e.g., 120 (can be elevated by ash)" min="0" max="400">
+                                    placeholder="p.ej., 120 (puede elevarse por ceniza)" min="0" max="400">
                             </div>
 
                             <!-- Avg Temperature (°C) -->
@@ -120,12 +122,11 @@
                                             class="text-orange-600">
                                             <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" />
                                         </svg>
-                                        Avg Temperature (°C)
+                                        Temp. media (°C)
                                     </span>
                                 </div>
                                 <input type="range" class="slider" id="temperature" min="-10" max="50" step="1"
-                                    value="20" oninput="this.nextElementSibling.value = this.value">
-                                <output>20</output>
+                                    value="20">
                                 <div class="slider-labels">
                                     <span>-10°C</span>
                                     <span>20°C</span>
@@ -144,16 +145,14 @@
                                             <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
                                             <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
                                         </svg>
-                                        Avg Humidity (%)
+                                        Humedad media (%)
                                     </span>
                                 </div>
-                                <input type="range" class="slider" id="humidity" min="0" max="100" step="1" value="50"
-                                    oninput="this.nextElementSibling.value = this.value">
-                                <output>50</output>
+                                <input type="range" class="slider" id="humidity" min="0" max="100" step="1" value="50">
                                 <div class="slider-labels">
-                                    <span>Dry (0%)</span>
-                                    <span>Moderate (50%)</span>
-                                    <span>Humid (100%)</span>
+                                    <span>Seco (0%)</span>
+                                    <span>Moderado (50%)</span>
+                                    <span>Húmedo (100%)</span>
                                 </div>
                             </div>
 
@@ -166,12 +165,10 @@
                                             class="text-blue-600">
                                             <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
                                         </svg>
-                                        Monthly Rainfall (mm)
+                                        Lluvia mensual (mm)
                                     </span>
                                 </div>
-                                <input type="range" class="slider" id="rainfall" min="0" max="500" step="1" value="100"
-                                    oninput="this.nextElementSibling.value = this.value">
-                                <output>100</output>
+                                <input type="range" class="slider" id="rainfall" min="0" max="500" step="1" value="100">
                                 <div class="slider-labels">
                                     <span>0 mm</span>
                                     <span>100 mm</span>
@@ -188,8 +185,8 @@
                                 <path d="M12 16v-4" />
                                 <path d="M12 8h.01" />
                             </svg>
-                            <p>Leave fields empty to use AI-optimized defaults based on typical wildfire-affected soil
-                                conditions.</p>
+                            <p>Deje los campos vacíos para usar los valores por defecto optimizados por la IA basados en
+                                condiciones típicas de suelos afectados por incendios.</p>
                         </div>
 
                         <!-- Submit Button -->
@@ -199,7 +196,7 @@
                                 <path
                                     d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
                             </svg>
-                            Get AI Recommendations
+                            Obtener recomendaciones de IA
                         </button>
                     </form>
                 </div>
@@ -218,9 +215,10 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 style="margin-bottom: 0.5rem;">Ready to Analyze</h3>
-                            <p style="color: #15803d;">Enter your soil parameters and click "Get AI Recommendations" to
-                                receive personalized crop suggestions for your wildfire-affected land.</p>
+                            <h3 style="margin-bottom: 0.5rem;">Listo para analizar</h3>
+                            <p style="color: #15803d;">Introduzca los parámetros del suelo y haga clic en "Obtener
+                                recomendaciones de IA" para recibir sugerencias de cultivos personalizadas para su
+                                terreno afectado por incendios.</p>
                         </div>
                     </div>
                 </div>
@@ -237,9 +235,9 @@
                             <div class="spinner"></div>
                         </div>
                         <div>
-                            <h3 style="margin-bottom: 0.5rem;">Analyzing Soil Conditions</h3>
-                            <p style="color: #15803d;">Our AI is processing your parameters to find the optimal crops...
-                            </p>
+                            <h3 style="margin-bottom: 0.5rem;">Analizando condiciones del suelo</h3>
+                            <p style="color: #15803d;">Nuestra IA está procesando sus parámetros para encontrar los
+                                cultivos óptimos...</p>
                         </div>
                     </div>
                 </div>
@@ -253,11 +251,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <p>ReFlora AI - Helping restore and revitalize fire-affected agricultural land</p>
+            <p>ReFlora AI - Ayudando a restaurar y revitalizar tierras agrícolas afectadas por incendios</p>
         </div>
     </footer>
 
-    <script src="/static/main.js"></script>
+    <script src="/static/main.es.js"></script>
 </body>
 
 </html>

@@ -33,6 +33,10 @@ def read_index():
     return FileResponse(str(CLIENT_DIR / "index.html"))
 
 
+@app.get("/es", response_class=FileResponse)
+def read_index_es():
+    return FileResponse(str(CLIENT_DIR / "index.es.html"))
+
 @app.post("/predict")
 def predict(payload: dict = Body(...)):
     sample = None
@@ -46,33 +50,47 @@ def predict(payload: dict = Body(...)):
             sample = [float(x) for x in s[:7]]
         except Exception:
             raise HTTPException(status_code=400, detail="Unable to convert sample values to numbers")
-    else:
-        # Try to extract named fields from JSON (flexible keys)
-        def _get(keys):
-            for k in keys:
-                if k in payload:
-                    return payload[k]
-            return None
-
-        N = _get(["nitrogen", "n", "N", "nitro"])
-        P = _get(["phosphorus", "p", "P"])
-        K = _get(["potassium", "k", "K"])
-        temp = _get(["temperature", "temp"])
-        humid = _get(["humidity", "humid"])
-        phv = _get(["ph"]) or _get(["pH", "PH"]) 
-        rain = _get(["rainfall", "rain"])
-
-        missing = [name for name, val in [("nitrogen", N), ("phosphorus", P), ("potassium", K), ("temperature", temp), ("humidity", humid), ("ph", phv), ("rainfall", rain)] if val is None]
-        if missing:
-            raise HTTPException(status_code=400, detail=f"Missing fields: {', '.join(missing)}")
-
-        try:
-            sample = [float(N), float(P), float(K), float(temp), float(humid), float(phv), float(rain)]
-        except Exception:
-            raise HTTPException(status_code=400, detail="Unable to convert one or more fields to numeric values")
-
+        
     try:
         result = top_crops([sample])
+        # Optionally translate crop names based on payload 'lang'
+        lang = str(payload.get("lang", "en")).lower()
+
+        if lang.startswith("es"):
+            # mapping of English crop keys (as used in model) to Spanish names
+            es_map = {
+                'rice': 'arroz',
+                'maize': 'maíz',
+                'chickpea': 'garbanzo',
+                'kidneybeans': 'frijol riñón',
+                'pigeonpeas': 'guandú',
+                'mothbeans': 'vigna moth',
+                'mungbean': 'frijol mungo',
+                'blackgram': 'frijol negro',
+                'lentil': 'lenteja',
+                'pomegranate': 'granada',
+                'banana': 'plátano',
+                'mango': 'mango',
+                'grapes': 'uvas',
+                'watermelon': 'sandía',
+                'muskmelon': 'melón',
+                'apple': 'manzana',
+                'orange': 'naranja',
+                'papaya': 'papaya',
+                'coconut': 'coco',
+                'cotton': 'algodón',
+                'jute': 'yute',
+                'coffee': 'café'
+            }
+
+            translated = {}
+            for k, v in result.items():
+                key_lower = k.lower()
+                translated_name = es_map.get(key_lower, k)
+                translated[translated_name] = v
+
+            return translated
+
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
